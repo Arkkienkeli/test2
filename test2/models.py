@@ -1,53 +1,74 @@
-#coding=utf-8
+# encoding: utf8
 
 from django.db import models
 from django.contrib import admin
 from autoslug import AutoSlugField
 
+from django_resized import ResizedImageField
+
 class Trademark(models.Model):
 	class Meta:
-		verbose_name = 'Торговая марка'
-		verbose_name_plural = 'Торговые марки'
-		ordering = ['trademark_name']
-	trademark_name = models.CharField(u'Наименование', max_length=200)
-	trademark_logo = models.ImageField(u'Логотип', upload_to='logos/', height_field=150, width_field=150)
-	trademark_description = models.CharField(u'Описание', max_length=300)
-	trademark_phone_number = models.CharField(u'Телефон',max_length=12)
-	trademark_email = models.CharField(u'E-mail',max_length=30)
-	trademark_site = models.CharField(u'Сайт',max_length=30)
-	trademark_slug = AutoSlugField(populate_from='trademark_name')
+		verbose_name = u'Торговая марка'
+		verbose_name_plural = u'Торговые марки'
+		ordering = ['name']
+
+	_max_width = _max_height = 150
+
+	key = models.AutoField(primary_key=True)
+	name = models.CharField(u'Наименование', max_length=200)
+	image = ResizedImageField(u'Логотип', upload_to=".",
+		max_width=_max_width, max_height = _max_height)
+	description = models.TextField(u'Описание', max_length=300)
+	phone_number = models.CharField(u'Телефон',max_length=12)
+	email = models.EmailField(u'E-mail',max_length=30)
+	site = models.URLField(u'Сайт',max_length=30)
+	slug = AutoSlugField(populate_from='name')
+
 
 	def __unicode__(self):
-		return self.title
+		return self.name
 
 class Category(models.Model):
 	class Meta:
 		verbose_name = 'Категория товара'
 		verbose_name_plural = 'Категории товаров'
-		ordering = ['category_name']
-	category_name = models.CharField(u'Наименование категории', max_length=250)
-	category_pic = models.ImageField(u'Пиктограмма', upload_to='pics/', height_field=100, width_field=100)
-	category_slug = AutoSlugField(populate_from='category_name')
+		ordering = ['name']
+
+	_max_height = _max_width = 100
+
+	key = models.AutoField(primary_key=True)
+	name = models.CharField(u'Наименование категории', max_length=250)
+	image = ResizedImageField(u'Пиктограмма', upload_to=".", 
+		max_width=_max_width, max_height = _max_height,
+		blank = True) # Поле опционально: https://docs.djangoproject.com/en/dev/ref/models/fields/#null
+	slug = AutoSlugField(populate_from='name')
 
 	def __unicode__(self):
-		return self.title
+		return self.name
 
 class Product(models.Model):
 	class Meta:
 		verbose_name = 'Товар'
 		verbose_name_plural = 'Товары'
-		ordering = ['product_name']
-	product_name = models.CharField(u'Наименование', max_length=250)
-	product_trademark = models.ForeignKey(Trademark)
-	product_SKU = models.IntegerField(u'СКУ')
-	product_description = models.CharField(u'Описание', max_length=300)
-	product_price = models.DecimalField(u'Цена', max_digits=8, decimal_places=2)
-	product_category = models.ForeignKey(Category)
-	product_amount = models.IntegerField(u'Количество на складе')
-	product_slug = AutoSlugField(populate_from='product_name')
+		ordering = ['name']
+
+	_max_height = _max_width = 150
+	image = ResizedImageField(u'Картинка', upload_to=".",
+		max_width=_max_width, max_height = _max_height)
+
+
+	key = models.AutoField(primary_key=True)
+	name = models.CharField(u'Наименование', max_length=250)
+	trademark = models.ForeignKey(Trademark)
+	SKU = models.IntegerField(u'СКУ')
+	description = models.CharField(u'Описание', max_length=300)
+	price = models.DecimalField(u'Цена', max_digits=8, decimal_places=2)
+	category = models.ForeignKey(Category)
+	amount = models.IntegerField(u'Количество на складе')
+	slug = AutoSlugField(populate_from='name')
 
 	def __unicode__(self):
-		return self.title
+		return self.name
 
 	def selection_task(self):
 		""" Запрос для выдачи товаров определенной торговой марки (пр. «Phillips»), 
