@@ -1,0 +1,5 @@
+*.pyc
+test2/static/*
+media/*
+sqlite.db
+.sass-cache/*
