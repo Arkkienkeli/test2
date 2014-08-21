@@ -65,7 +65,7 @@ class Product(models.Model):
 	price = models.DecimalField(u'Цена', max_digits=8, decimal_places=2)
 	category = models.ForeignKey(Category)
 	amount = models.IntegerField(u'Количество на складе')
-	slug = AutoSlugField(populate_from='name', unique=True)
+	slug = AutoSlugField(populate_from='name', unique=True, editable=True, blank=True)
 
 	def __unicode__(self):
 		return self.name

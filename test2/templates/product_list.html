@@ -1,10 +1,18 @@
 <html>
 	<head>
+		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+		<link rel="stylesheet" href="./static/style/style.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
 		<title>Тестовый сайт - Список всех продуктов</title>
 	</head>
 	<body>
 		<header></header>
 		<div id="main">
+
+			alisa 2
+			<br>
+			bob 3
 			
 			{% include "sidebar.html" %}
 	
@@ -13,7 +21,7 @@
 				{% for product in products %}
 
 					<article class="product">
-						<img src="{{product.image}}" alt="{{product.name}}">
+						<img src="media/{{product.image}}" alt="{{product.name}}">
 						<header>
 							{{product.name}}
 						</header>
@@ -29,8 +37,8 @@
 								<span>СКУ: {{product.SKU}}</span>
 							</div>
 							<div class = "links">
-								<span><a href = "{%url products_by_category product.category.slug%}">{{product.category.name}}</a></span>
-								<span><a href = "{%url trademark product.trademark.slug%}">{{product.trademark.name}}</a></span>
+								<span><a href = "{%url 'products_by_category' product.category.slug%}">{{product.category.name}}</a></span>
+								<span><a href = "{%url 'trademark' product.trademark.slug%}">{{product.trademark.name}}</a></span>
 							</div>
 						</div>
 					</article>
@@ -39,5 +47,7 @@
 			</div>
 		</div>	
 		<footer></footer>
+
+		<script src="./static/js/live.js"></script>
 	</body>
 </html>
