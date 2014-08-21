@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<title>Тестовый сайт - Список всех продуктов</title>
+	</head>
+	<body>
+		<header></header>
+		<div id="main">
+			
+			{% include "sidebar.html" %}
+	
+			<div id="content">
+				{% for product in products %}
+
+					<article class="product">
+						<img src="{{product.image}}" alt="{{product.name}}">
+						<header>
+							{{product.name}}
+						</header>
+
+						<div class="description">
+							{{product.description}}
+						</div>
+
+						<div class="parameters">
+							<div class = "numbers">
+								<span>Цена: {{product.price}}</span>
+								<span>Количество на складе: {{product.amount}}</span>
+								<span>СКУ: {{product.SKU}}</span>
+							</div>
+							<div class = "links">
+								<span><a href = "{%url products_by_category product.category.slug%}">{{product.category.name}}</a></span>
+								<span><a href = "{%url trademark product.trademark.slug%}">{{product.trademark.name}}</a></span>
+							</div>
+						</div>
+					</article>
+
+				{% endfor %}
+			</div>
+		</div>	
+		<footer></footer>
+	</body>
+</html>

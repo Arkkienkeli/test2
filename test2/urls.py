@@ -13,9 +13,14 @@ urlpatterns = patterns('',
 
 
     url(r'^$', 'test2.views.product_list'),
-    url(r'^trademark/(?P<id>[0-9]+)/$', 'test2.views.trademark_details'),
-    #url(r'^products/category/')
-    #url(r'^products/test_case/'')
+    url(r'^products/$', 'test2.views.product_list'),
+    url(r'^products/category/(?P<slug>[\w-]+)/$', 'test2.views.products_by_category',
+    	name='products_by_category'),
+	url(r'^products/test_case/$', 'test2.views.products_test_case', 
+		name="test_case"),
+
+    url(r'^trademark/(?P<slug>[\w-]+)/$', 'test2.views.trademark_details', 
+    	name="trademark"),
 
     url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
     url(r'^admin/', include(admin.site.urls)),
