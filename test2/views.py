@@ -4,11 +4,15 @@ from django.shortcuts import render
 
 from test2.models import Product, Trademark, Category
 
+# Хелперы для вьюшек
+
 def render_products(request, products):
 	""" Хелпер: отрендерить список продуктов. """
 	return render(request, "product_list.html", 
 		{"products": products,
 		 "categories": Category.objects.all()})
+
+# Вьюшки
 
 def product_list(request):
 	""" Список всех товаров. """

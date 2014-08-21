@@ -9,6 +9,7 @@
 			{% include "sidebar.html" %}
 	
 			<div id="content">
+				{% load filters %}
 				{% for product in products %}
 
 					<article class="product">
@@ -23,7 +24,7 @@
 
 						<div class="parameters">
 							<div class = "numbers">
-								<span>Цена: {{product.price}}</span>
+								<span>Цена: {{product.price | price}}</span>
 								<span>Количество на складе: {{product.amount}}</span>
 								<span>СКУ: {{product.SKU}}</span>
 							</div>
