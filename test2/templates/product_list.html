@@ -12,6 +12,9 @@
 			{% include "sidebar.html" %}
 	
 			<div id="content_column">
+				<div id="content_control">
+				</div>
+
 				<div id="content">
 				{% load filters %}
 				{% for product in products %}
@@ -29,9 +32,22 @@
 						</div>
 
 						<div class = "numbers">
-							<span>Цена: {{product.price | price}}</span>
-							<span>Количество: {{product.amount}}</span>
-							<span>СКУ: {{product.SKU}}</span>
+							<table>
+						    	<thead>
+									<tr>
+										<th>Цена</th>
+										<th>Количество</th>
+										<th>СКУ</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>{{product.price | price}}</td>
+										<td>{{product.amount}}</td>
+										<td>{{product.SKU}}</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 						<div class = "links">
 							<span><a href = "{%url 'products_by_category' product.category.slug%}">{{product.category.name}}</a></span>
