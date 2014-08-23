@@ -11,13 +11,15 @@
 			
 			{% include "sidebar.html" %}
 	
-			<div id="content">
-				<div class="box">
+			<div id="content_column">
+				<div id="content">
 				{% load filters %}
 				{% for product in products %}
 
 					<article class="product">
-						<img src="media/{{product.image}}" alt="{{product.name}}">
+						<div class="img-wrapper">
+							<img src="media/{{product.image}}" alt="{{product.name}}">
+						</div>
 						<header>
 							{{product.name}}
 						</header>
@@ -26,17 +28,16 @@
 							{{product.description}}
 						</div>
 
-						<div class="parameters">
-							<div class = "numbers">
-								<span>Цена: {{product.price | price}}</span>
-								<span>Количество на складе: {{product.amount}}</span>
-								<span>СКУ: {{product.SKU}}</span>
-							</div>
-							<div class = "links">
-								<span><a href = "{%url 'products_by_category' product.category.slug%}">{{product.category.name}}</a></span>
-								<span><a href = "{%url 'trademark' product.trademark.slug%}">{{product.trademark.name}}</a></span>
-							</div>
+						<div class = "numbers">
+							<span>Цена: {{product.price | price}}</span>
+							<span>Количество: {{product.amount}}</span>
+							<span>СКУ: {{product.SKU}}</span>
 						</div>
+						<div class = "links">
+							<span><a href = "{%url 'products_by_category' product.category.slug%}">{{product.category.name}}</a></span>
+							<span><a href = "{%url 'trademark' product.trademark.slug%}">{{product.trademark.name}}</a></span>
+						</div>
+
 					</article>
 
 				{% endfor %}

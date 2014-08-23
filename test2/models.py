@@ -2,7 +2,8 @@
 
 from django.db import models
 from django.contrib import admin
-from autoslug import AutoSlugField
+#from autoslug import AutoSlugField
+from django_extensions.db.fields import AutoSlugField
 
 from django_resized import ResizedImageField
 
@@ -22,7 +23,7 @@ class Trademark(models.Model):
 	phone_number = models.CharField(u'Телефон',max_length=12)
 	email = models.EmailField(u'E-mail',max_length=30)
 	site = models.URLField(u'Сайт',max_length=30)
-	slug = AutoSlugField(populate_from='name', unique=True)
+	slug = AutoSlugField(populate_from=('name',), unique=True)
 
 
 	def __unicode__(self):
@@ -41,7 +42,7 @@ class Category(models.Model):
 	image = ResizedImageField(u'Пиктограмма', upload_to=".", 
 		max_width=_max_width, max_height = _max_height,
 		blank = True) # Поле опционально: https://docs.djangoproject.com/en/dev/ref/models/fields/#null
-	slug = AutoSlugField(populate_from='name', unique=True)
+	slug = AutoSlugField(populate_from=('name',), unique=True)
 
 	def __unicode__(self):
 		return self.name
@@ -65,7 +66,7 @@ class Product(models.Model):
 	price = models.DecimalField(u'Цена', max_digits=8, decimal_places=2)
 	category = models.ForeignKey(Category)
 	amount = models.IntegerField(u'Количество на складе')
-	slug = AutoSlugField(populate_from='name', unique=True, editable=True, blank=True)
+	slug = AutoSlugField(populate_from='name', unique=True)
 
 	def __unicode__(self):
 		return self.name

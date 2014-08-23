@@ -4,22 +4,20 @@
 		<header>
 			Категории товаров
 		</header>
-		<div>
 		<ul>
 
 			{% for category in categories %}
 			<li><a href="url products_by_category category.slug">{{category.name}}</a></li>
 			{% endfor %}
 		</ul>
-		</div>
 	</nav>
 	<nav>
 		<header>
 			Требования ТЗ
-		<header>
-		<div>
-			<a href="/products/test_case/">Тестовый случай</a>
-		</div>
+		</header>
+		<ul>
+			<li><a href="/products/test_case/">Тестовый случай</a></li>
+		</ul>
 	</nav>
 
 </div>
