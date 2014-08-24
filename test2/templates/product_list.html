@@ -6,59 +6,62 @@
 		<title>Тестовый сайт - Список всех продуктов</title>
 	</head>
 	<body>
-		<header></header>
+		<header>Заголовок, наполненный смыслом</header>
 		<div id="main">
 			
 			{% include "sidebar.html" %}
 	
 			<div id="content_column">
-				<div id="content_control">
+
+				<div id="pre_content">
+					<div id="content_control">
+						AAA
+					</div>
+					<div id="content">
+							
+					{% load filters %}
+					{% for product in products %}
+
+						<article class="product">
+							<div class="img-wrapper">
+								<img src="media/{{product.image}}" alt="{{product.name}}">
+							</div>
+							<header>
+								{{product.name}}
+							</header>
+
+							<div class="description">
+								{{product.description}}
+							</div>
+
+							<div class = "numbers">
+								<table>
+							    	<thead>
+										<tr>
+											<th>Цена</th>
+											<th>Наличие</th>
+											<th>СКУ</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>{{product.price | price}}</td>
+											<td>{{product.amount}}</td>
+											<td>{{product.SKU}}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class = "links">
+								<span><a href = "{%url 'products_by_category' product.category.slug%}">{{product.category.name}}</a></span>
+								<span><a href = "{%url 'trademark' product.trademark.slug%}">{{product.trademark.name}}</a></span>
+							</div>
+
+						</article>
+
+					{% endfor %}
+					</div>
 				</div>
-
-				<div id="content">
-				{% load filters %}
-				{% for product in products %}
-
-					<article class="product">
-						<div class="img-wrapper">
-							<img src="media/{{product.image}}" alt="{{product.name}}">
-						</div>
-						<header>
-							{{product.name}}
-						</header>
-
-						<div class="description">
-							{{product.description}}
-						</div>
-
-						<div class = "numbers">
-							<table>
-						    	<thead>
-									<tr>
-										<th>Цена</th>
-										<th>Количество</th>
-										<th>СКУ</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>{{product.price | price}}</td>
-										<td>{{product.amount}}</td>
-										<td>{{product.SKU}}</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<div class = "links">
-							<span><a href = "{%url 'products_by_category' product.category.slug%}">{{product.category.name}}</a></span>
-							<span><a href = "{%url 'trademark' product.trademark.slug%}">{{product.trademark.name}}</a></span>
-						</div>
-
-					</article>
-
-				{% endfor %}
-				</div>
-			</div>
 		</div>	
 		<footer></footer>
 

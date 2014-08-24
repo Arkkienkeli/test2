@@ -7,4 +7,4 @@ register = template.Library()
 
 @register.filter(name='price')
 def price(number):
-	return (unicode(number) + u" &#8381;")
+	return (unicode(number) + u" \u20BD")

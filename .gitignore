@@ -1,5 +1,6 @@
 *.pyc
 test2/static/*
+!test2/static/style/*
 media/*
 sqlite.db
-.sass-cache/*
+#.sass-cache/**

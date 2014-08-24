@@ -1,0 +1,181 @@
+@import "pure";
+
+// Хелперы и миксины
+
+
+
+.box {
+	border: 1px solid #dddddd;
+}
+
+// Типография
+
+$default_font_size: 16px;
+$increased_font_size: 18px;
+$title_font_size: 25.9px;
+
+// Хедеры и футеры
+
+body>header, body>footer {
+	width: 100%;
+	height: 72px;
+	
+	background-color: DarkGrey;
+}
+
+div#main {
+	@extend .pure-g;
+
+	min-width: 960px;
+	width: 80%;
+	min-height: 80%;
+	
+	margin: 40px auto;
+}
+
+// Две колонки главных
+
+div#sidebar {
+	@extend .pure-u-1-3;	
+	
+	box-sizing: border-box;
+	padding-right: 30px;
+}
+
+div#content_column {
+	@extend .pure-u-2-3;
+	
+	box-sizing: border-box;
+	padding-left: 30px;
+}
+
+
+// Сайдбар
+
+div#sidebar > nav {
+	@extend .pure-menu;
+	@extend .pure-menu-open;
+	@extend .box;
+			
+	// Для всех элементов кроме первого
+	&:nth-child(1n+2) {
+		// Отступы между меню
+		margin-top: 25px;
+	}
+
+	header {
+		@extend .pure-menu-heading;
+		
+		// Обезвреживаем настройки PureCSS
+		text-transform: none;
+		margin-top: 0;
+
+		font-size: $title_font_size;
+		
+		padding: 10px 15px;
+	}
+
+	li a {
+		padding: 10px 15px;
+	}
+}
+
+// Колонка товаров
+
+div#content_control {
+	@extend .box;
+
+	width: 100%;
+	height: 3.5rem;
+}
+
+
+// Список товаров и каждый конкретный товар
+
+@mixin product-list {
+	/* Список товаров, как в интернет магазине. */
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: flex-start;
+}
+
+
+
+div#content {
+	@include product-list;
+	
+	
+	article {
+		@extend .box;
+		
+		$border_radius: 7px;
+		
+		background-color: rgba(147,128,108,.1);
+		border-radius: $border_radius;
+		border-color: transparent; // Баг
+
+		width: 25% ;
+
+		margin-bottom: 30px; // Отступ между рядами
+
+		div.img-wrapper {
+			// Выравниваем изображения, и заставляем их хвсе занимать одинаковое количество места
+			display: flex;
+			min-height: 170px;
+			min-width: 170px;
+		
+			img {
+				margin: auto;	
+			}
+		}
+
+		header {
+			font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+			font-weight: bold;
+			font-size: $increased_font_size;
+		}
+
+		header, div.description, div.numbers, div.links {
+			width: 100%;
+			box-sizing: border-box;
+			padding: 8px 20px;
+		}
+
+		div.description {
+			max-height:  100px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			// ellipsis - Не работает, на многострочных текстах, что поделаешь :) 
+		
+			&:hover {
+				// Полная информация - по наведелию мышки
+				max-height: none;
+			}
+		}
+
+		table {
+			@extend .pure-table;
+	
+			width: 100%;
+
+			th, td {
+				padding: 3px;
+			}
+		}
+
+		/* Форматирование ссылок на категорию и торговую марку. 
+		   Такие ссылки должны больнее менее на табличку похоже. */
+		   
+		div.links {
+			display: table;
+			
+			span {
+				display: table-cell;	
+			}
+		}
+
+	}
+}
