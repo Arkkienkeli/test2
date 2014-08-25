@@ -3,7 +3,9 @@
 		<link rel="stylesheet" href="./static/style/style.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>Тестовый сайт - Список всех продуктов</title>
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+		<title>Тестовый сайт - Продукты</title>
 	</head>
 	<body>
 		<header>Заголовок, наполненный смыслом</header>
@@ -12,12 +14,24 @@
 			{% include "sidebar.html" %}
 	
 			<div id="content_column">
-
-				<div id="pre_content">
-					<div id="content_control">
-						AAA
-					</div>
-					<div id="content">
+					<header>
+						<div class="title">
+						Продукты
+						</div>
+						<div class="product_controls">
+	
+							<div>
+								<i class="fa fa-sort-amount-asc"></i>
+								<i class="fa fa-sort-amount-desc"></i> 
+							</div>
+							<div>
+								<i class="fa fa-th"></i>
+								<i class="fa fa-align-justify"></i>
+							</div>
+								
+						</div>
+					</header>
+					<div id="content" class="reversed-list">
 							
 					{% load filters %}
 					{% for product in products %}
@@ -61,7 +75,7 @@
 
 					{% endfor %}
 					</div>
-				</div>
+			</div>
 		</div>	
 		<footer></footer>
 

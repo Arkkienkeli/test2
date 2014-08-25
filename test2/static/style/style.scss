@@ -1,18 +1,21 @@
 @import "pure";
-
-// Хелперы и миксины
-
-
-
-.box {
-	border: 1px solid #dddddd;
-}
-
+ 
 // Типография
 
 $default_font_size: 16px;
 $increased_font_size: 18px;
-$title_font_size: 25.9px;
+$title_font_size: 29.9px;
+
+// Стандартный бордюр
+$border: 1px lightgrey solid;
+
+
+// Хелперы и миксины
+
+.box {
+	border: $border;
+}
+
 
 // Хедеры и футеры
 
@@ -24,33 +27,59 @@ body>header, body>footer {
 }
 
 div#main {
-	@extend .pure-g;
+	display: flex;
+	justify-content: space-between; 
 
 	min-width: 960px;
 	width: 80%;
 	min-height: 80%;
 	
-	margin: 40px auto;
+	margin: 60px auto;
 }
 
 // Две колонки главных
 
 div#sidebar {
-	@extend .pure-u-1-3;	
-	
-	box-sizing: border-box;
-	padding-right: 30px;
+	order: 1;
+	flex-basis: 25%;
 }
 
 div#content_column {
-	@extend .pure-u-2-3;
+	order: 2;
+	flex-basis: 65%;
 	
-	box-sizing: border-box;
-	padding-left: 30px;
+	@extend .box;
 }
 
 
 // Сайдбар
+
+$header_max_height: 56px;
+
+@mixin simple-header {
+	// Внешний вид + бордюр снизу заголовка
+	
+	color: #565d64;
+	font-size: $title_font_size;
+	
+	border-bottom: $border;
+	
+	padding: 10px 15px;
+
+	max-height: $header_max_height; 
+		//%HACK: Делаем все блоки с заголовсками одинаковой высоты
+}
+
+@mixin menu-header {
+	@extend .pure-menu-heading;
+	
+	// Обезвреживаем настройки PureCSS
+	text-transform: none;
+	margin-top: 0;
+	line-height: inherit;
+	
+	@include simple-header;
+}
 
 div#sidebar > nav {
 	@extend .pure-menu;
@@ -64,15 +93,7 @@ div#sidebar > nav {
 	}
 
 	header {
-		@extend .pure-menu-heading;
-		
-		// Обезвреживаем настройки PureCSS
-		text-transform: none;
-		margin-top: 0;
-
-		font-size: $title_font_size;
-		
-		padding: 10px 15px;
+		@include menu-header;
 	}
 
 	li a {
@@ -82,11 +103,45 @@ div#sidebar > nav {
 
 // Колонка товаров
 
-div#content_control {
-	@extend .box;
+div#content_column>header {
+	margin-bottom: 50px;
+	
+	height: $header_max_height;
+	max-height: $header_max_height;
+	// %HACK: Нужно устонавливать высоту соразмерно названию в div.title 
 
-	width: 100%;
-	height: 3.5rem;
+	border-bottom: $border;
+
+	display: flex;
+	justify-content: space-between;
+	
+	div.title {
+		@include simple-header;
+		border-bottom: none;
+	}	
+
+	div.product_controls{
+		height: 100%;
+		width: 183px;
+		
+		box-sizing: border-box;
+		padding: 15px;
+				
+		border-left: $border;
+		
+		display: flex;
+		
+		div:nth-child(2){
+			margin-left: 20px;
+		}
+
+		i {
+			margin-left: 4px;
+		
+			color: grey;
+			font-size: 25px;
+		}
+	}
 }
 
 
@@ -98,28 +153,35 @@ div#content_control {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	justify-content: space-around;
+	justify-content: space-between;
 	align-items: flex-start;
+
+	padding: 0 30px;
 }
-
-
 
 div#content {
 	@include product-list;
-	
-	
+		
 	article {
 		@extend .box;
 		
-		$border_radius: 7px;
+		$border_radius: 15px;
 		
-		background-color: rgba(147,128,108,.1);
+		//background-color: rgba(147,128,108,.1);
+		//border-color: transparent; // Баг
+
 		border-radius: $border_radius;
-		border-color: transparent; // Баг
+		border: $border;
+		
+		//margin: auto;  /* Magic! */
+		
+		border-width: 7px;
+		border-color: darkgrey;
 
 		width: 25% ;
+		height: auto;
 
-		margin-bottom: 30px; // Отступ между рядами
+		margin-bottom: 20px; // Отступ между рядами
 
 		div.img-wrapper {
 			// Выравниваем изображения, и заставляем их хвсе занимать одинаковое количество места
@@ -177,5 +239,18 @@ div#content {
 			}
 		}
 
+	}
+}
+
+.long_mode {
+	/* Режим удлиненого чтения */
+	
+	padding: 0;
+
+	article {
+		width: 100%;
+		
+		border:none;
+		border-bottom: $border;
 	}
 }
