@@ -7,7 +7,7 @@
 		<ul>
 
 			{% for category in categories %}
-			<li><a href="url products_by_category category.slug">{{category.name}}</a></li>
+			<li><a href="{% url 'products_by_category' category.slug %}">{{category.name}}</a></li>
 			{% endfor %}
 		</ul>
 	</nav>
@@ -17,6 +17,16 @@
 		</header>
 		<ul>
 			<li><a href="/products/test_case/">Тестовый случай</a></li>
+		</ul>
+	</nav>
+	<nav>
+		<header>
+			Производители
+		</header>
+		<ul>
+			{% for trademark in trademarks %}
+			<li><a href="{% url 'trademark' trademark.slug %}">{{trademark.name}}</a></li>
+			{% endfor %}
 		</ul>
 	</nav>
 

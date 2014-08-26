@@ -23,7 +23,7 @@ class Trademark(models.Model):
 	phone_number = models.CharField(u'Телефон',max_length=12)
 	email = models.EmailField(u'E-mail',max_length=30)
 	site = models.URLField(u'Сайт',max_length=30)
-	slug = AutoSlugField(populate_from=('name',), unique=True)
+	slug = AutoSlugField(populate_from='name', unique=True)
 
 
 	def __unicode__(self):
@@ -42,7 +42,7 @@ class Category(models.Model):
 	image = ResizedImageField(u'Пиктограмма', upload_to=".", 
 		max_width=_max_width, max_height = _max_height,
 		blank = True) # Поле опционально: https://docs.djangoproject.com/en/dev/ref/models/fields/#null
-	slug = AutoSlugField(populate_from=('name',), unique=True)
+	slug = AutoSlugField(populate_from='name', unique=True)
 
 	def __unicode__(self):
 		return self.name
@@ -60,11 +60,11 @@ class Product(models.Model):
 
 	key = models.AutoField(primary_key=True)
 	name = models.CharField(u'Наименование', max_length=250)
-	trademark = models.ForeignKey(Trademark)
+	trademark = models.ForeignKey(Trademark, related_name="products")
 	SKU = models.IntegerField(u'СКУ')
 	description = models.CharField(u'Описание', max_length=300)
 	price = models.DecimalField(u'Цена', max_digits=8, decimal_places=2)
-	category = models.ForeignKey(Category)
+	category = models.ForeignKey(Category, related_name="products")
 	amount = models.IntegerField(u'Количество на складе')
 	slug = AutoSlugField(populate_from='name', unique=True)
 

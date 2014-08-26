@@ -28,7 +28,6 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -88,7 +87,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT =  os.path.join(BASE_DIR, 'static/static')
 
 
-
 # Media - загруженные файлы
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -101,6 +99,8 @@ TEMPLATE_DIRS = (
 #TEMPLATE_CONTEXT_PROCESSORS = (
 #    "django.core.context_processors.request",
 #)
+
+AUTOSLUG_SLUGIFY_FUNCTION = "autoslug.utils.translit_long"
 
 
 # Патчим баг Django
@@ -132,4 +132,3 @@ def patch_broken_pipe_error():
     handlers.BaseHandler.log_exception = my_log_exception
 
 patch_broken_pipe_error()
-

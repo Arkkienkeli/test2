@@ -21,17 +21,17 @@
 						<div class="product_controls">
 	
 							<div>
-								<i class="fa fa-sort-amount-asc"></i>
-								<i class="fa fa-sort-amount-desc"></i> 
+								<i id="sort_by_name" class="checked"></i>
+								<i id="sort_by_name_reversed"></i> 
 							</div>
 							<div>
-								<i class="fa fa-th"></i>
-								<i class="fa fa-align-justify"></i>
+								<i id="view_products_as_tiles" class="checked"></i>
+								<i id="view_products_as_rows"></i>
 							</div>
 								
 						</div>
 					</header>
-					<div id="content" class="reversed-list">
+					<div id="content">
 							
 					{% load filters %}
 					{% for product in products %}
@@ -80,5 +80,6 @@
 		<footer></footer>
 
 		<script src="./static/js/live.js"></script>
+		<script src="./static/js/script.js"></script>
 	</body>
 </html>
