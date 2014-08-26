@@ -100,7 +100,7 @@ TEMPLATE_DIRS = (
 #    "django.core.context_processors.request",
 #)
 
-AUTOSLUG_SLUGIFY_FUNCTION = "autoslug.utils.translit_long"
+#AUTOSLUG_SLUGIFY_FUNCTION = "autoslug.utils.translit_long"
 
 
 # Патчим баг Django

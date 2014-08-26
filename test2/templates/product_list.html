@@ -1,9 +1,10 @@
 <html>
 	<head>
-		<link rel="stylesheet" href="./static/style/style.css">
+		<link rel="stylesheet" href="/static/style/style.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
 
 		<title>Тестовый сайт - Продукты</title>
 	</head>
@@ -11,75 +12,17 @@
 		<header>Заголовок, наполненный смыслом</header>
 		<div id="main">
 			
-			{% include "sidebar.html" %}
-	
-			<div id="content_column">
-					<header>
-						<div class="title">
-						Продукты
-						</div>
-						<div class="product_controls">
-	
-							<div>
-								<i id="sort_by_name" class="checked"></i>
-								<i id="sort_by_name_reversed"></i> 
-							</div>
-							<div>
-								<i id="view_products_as_tiles" class="checked"></i>
-								<i id="view_products_as_rows"></i>
-							</div>
-								
-						</div>
-					</header>
-					<div id="content">
-							
-					{% load filters %}
-					{% for product in products %}
-
-						<article class="product">
-							<div class="img-wrapper">
-								<img src="media/{{product.image}}" alt="{{product.name}}">
-							</div>
-							<header>
-								{{product.name}}
-							</header>
-
-							<div class="description">
-								{{product.description}}
-							</div>
-
-							<div class = "numbers">
-								<table>
-							    	<thead>
-										<tr>
-											<th>Цена</th>
-											<th>Наличие</th>
-											<th>СКУ</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>{{product.price | price}}</td>
-											<td>{{product.amount}}</td>
-											<td>{{product.SKU}}</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div class = "links">
-								<span><a href = "{%url 'products_by_category' product.category.slug%}">{{product.category.name}}</a></span>
-								<span><a href = "{%url 'trademark' product.trademark.slug%}">{{product.trademark.name}}</a></span>
-							</div>
-
-						</article>
-
-					{% endfor %}
-					</div>
+			<div id="left_column">
+				{% include "parts/sidebar.html" %}
 			</div>
+	
+			<div id="right_column">
+				{% include "parts/products_column.html" %}
+			</div> 
 		</div>	
 		<footer></footer>
 
-		<script src="./static/js/live.js"></script>
-		<script src="./static/js/script.js"></script>
+		<script src="/static/js/live.js"></script>
+		<script src="/static/js/script.js"></script>
 	</body>
 </html>

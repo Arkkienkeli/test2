@@ -34,10 +34,10 @@ def products_test_case(request):
 def trademark_details(request, slug):
 	""" Запись марки товаров. """
 
-	trademark = get_object_or_404(Trademark, slug=slug)
+	trademark = get_object_or_404(Trademark, slug=slug) 
 
 	return render(request, "trademark_details.html", 
 		{"trademark": trademark,
-		 "products": products,
+		 "products": trademark.products.all(),
 		 "categories": Category.objects.all(),
 		 "trademarks": Trademark.objects.all()})

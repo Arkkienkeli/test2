@@ -1,26 +1,28 @@
 <html>
 	<head>
-		<title>Тестовый сайт - </title>
+		<link rel="stylesheet" href="/static/style/style.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+		<title>Тестовый сайт - Продукты</title>
 	</head>
 	<body>
+		<header>Заголовок, наполненный смыслом</header>
 		<div id="main">
-			<nav>
-				<a href=""></a>
-			</nav>
-			<div id="content">
-				<article class="trademark">
-					<img src="" alt="">
-					<header>
-						{{trademark.name}}
-					</header>
-					<div class="description">
-						{{trademark.description}}
-					</summary>
-					<div class="parameters">
-					</div>
-				</article>
+			<div id="left_column">
+				{% include "parts/sidebar.html" %}
 			</div>
+			<div id="right_column">
+				{% include "parts/trademark.html" %}
+
+				{% include "parts/products_column.html" %}
+			</div> 
 		</div>	
-		
+		<footer></footer>
+
+		<script src="/static/js/live.js"></script>
+		<script src="/static/js/script.js"></script>
 	</body>
 </html>

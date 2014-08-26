@@ -21,11 +21,13 @@ $border: 1px lightgrey solid;
 // Хедеры и футеры
 
 body>header, body>footer {
+	@extend .box;
+
 	width: 100%;
 	height: 72px;
-	
-	background-color: DarkGrey;
 }
+
+// Главный макет колонок
 
 div#main {
 	display: flex;
@@ -36,22 +38,19 @@ div#main {
 	min-height: 80%;
 	
 	margin: 60px auto;
+
+	// Две колонки главных
+
+	div#left_column {
+		order: 1;
+		flex-basis: 25%;
+	}
+
+	div#right_column {
+		order: 2;
+		flex-basis: 65%;
+	}
 }
-
-// Две колонки главных
-
-div#sidebar {
-	order: 1;
-	flex-basis: 25%;
-}
-
-div#content_column {
-	order: 2;
-	flex-basis: 65%;
-	
-	@extend .box;
-}
-
 
 // Сайдбар
 
@@ -104,14 +103,22 @@ div#sidebar > nav {
 
 // Колонка товаров
 
-div#content_column>header {
-	margin-bottom: 50px;
-	
+@mixin header-box {
 	height: $header_max_height;
 	max-height: $header_max_height;
 	// %HACK: Нужно устонавливать высоту соразмерно названию в div.title 
 
 	border-bottom: $border;
+}
+
+div#content_column {
+	@extend .box;
+}
+
+div#content_column>header {
+	margin-bottom: 50px;
+	
+	@include header-box;
 
 	display: flex;
 	justify-content: space-between;
@@ -245,6 +252,8 @@ div#content {
 			th, td {
 				padding: 3px;
 			}
+
+			
 		}
 
 		/* Форматирование ссылок на категорию и торговую марку. 
@@ -268,6 +277,7 @@ div#content {
 		border-bottom: $border;
 		
 		margin: 0; // Обнуляем разрыв со следующим блоком
+		padding-bottom: 20px;
 		
 		div.numbers, div.links {
 			display: none;
@@ -303,4 +313,38 @@ i#view_products_as_rows {
 	@extend .fa-align-justify;
 
 	padding-bottom: 1px !important;
+}
+
+// Трейдмарк
+
+div.trademark {
+	@extend .box;
+	
+	margin-bottom: 50px;
+
+	header {
+		@include header-box;
+		@include simple-header;
+		
+		height: auto;
+	}
+
+	div.things {
+		padding: 20px;
+
+	
+		img {
+			floating: left;
+			border-radius: 5px;
+		}
+	}
+
+	table.contacts {
+		@extend .pure-table;
+		@extend .pure-table-bordered;
+		
+		tr:nth-child(2){
+			@extend .pure-table-odd;
+		}
+	}
 }
