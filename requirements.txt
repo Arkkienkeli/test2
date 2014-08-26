@@ -1,0 +1,4 @@
+django==1.6
+django-grappelli
+django-extensions
+django-resized

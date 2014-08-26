@@ -1,6 +1,7 @@
 *.pyc
 test2/static/**/*
 !test2/static/style/*.scss
-media/*
 sqlite.db
+build/*
 .sass-cache/**
+задача.txt
