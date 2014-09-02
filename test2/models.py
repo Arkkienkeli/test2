@@ -71,6 +71,7 @@ class Product(models.Model):
 	def __unicode__(self):
 		return self.name
 
+	@classmethod
 	def selection_task(self):
 		""" Запрос для выдачи товаров определенной торговой марки (пр. «Phillips»), 
 			принадлежащий нескольким категориям (пр. БЫТОВАЯ ТЕХНИКА, ОСВЕЩЕНИЕ, ТОВАРЫ ДЛЯ ДОМА) 
@@ -79,11 +80,10 @@ class Product(models.Model):
 			Товар должен находиться на складе в количестве не менее 5 единиц. """ 
 
 		return (Product.objects
-			.filter(product_trademark="Philips")
-			.filter(product_price__gte=1000)
-			.filter(product_price__lte=16000)
-			.filter(product_amount__gte=5))
-	
+			.filter(trademark__name="Phillips")
+			.filter(price__gte=100)
+			.filter(price__lte=2010)
+			.filter(amount__gte=5))
 
 admin.site.register(Category)
 admin.site.register(Trademark)
