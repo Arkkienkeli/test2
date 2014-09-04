@@ -1,4 +1,4 @@
-@import "pure";
+@import "normalize";
 @import "font-awesome";
  
 // Типография
@@ -67,38 +67,40 @@ $header_max_height: 56px;
 	padding: 10px 15px;
 
 	max-height: $header_max_height; 
-		//%HACK: Делаем все блоки с заголовсками одинаковой высоты
+	//%HACK: Делаем все блоки с заголовсками одинаковой высоты
 }
 
-@mixin menu-header {
-	@extend .pure-menu-heading;
-	
-	// Обезвреживаем настройки PureCSS
-	text-transform: none;
-	margin-top: 0;
-	line-height: inherit;
-	
-	@include simple-header;
-}
-
-div#sidebar > nav {
-	@extend .pure-menu;
-	@extend .pure-menu-open;
+.menu {
 	@extend .box;
-			
+	
+    width: 100%;
+		
+	header {
+		@include simple-header;
+	}
+
+	a {
+		display: block;
+    	box-sizing: border-box;
+		width: 100%;
+		
+		padding: 15px 15px;
+
+    	text-decoration: none;
+		color: #777;
+		font-size: 1.15em;	
+	}
+
+	a:hover, a:focus {
+	    background: #eee;
+	}
+	
 	// Для всех элементов кроме первого
 	&:nth-child(1n+2) {
 		// Отступы между меню
-		margin-top: 25px;
+		margin-top: 30px;
 	}
 
-	header {
-		@include menu-header;
-	}
-
-	li a {
-		padding: 10px 15px;
-	}
 }
 
 // Колонка товаров
@@ -245,7 +247,6 @@ div#content {
 		}
 
 		table {
-			@extend .pure-table;
 	
 			width: 100%;
 
@@ -340,9 +341,7 @@ div.trademark {
 	}
 
 	table.contacts {
-		@extend .pure-table;
-		@extend .pure-table-bordered;
-		
+			
 		tr:nth-child(2){
 			@extend .pure-table-odd;
 		}
