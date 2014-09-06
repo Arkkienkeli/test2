@@ -77,72 +77,107 @@
 
 // Дизайн отдельного продукта
 
+@mixin simple-table {
+	border-collapse: collapse;
+
+	th {
+		border-bottom: 3px grey solid;
+	}
+
+	th, td {
+
+		line-height: 1.5;
+
+		// %HACK: Эффект пустого пространства между колонками 
+		$white_space: 15px;
+		padding: 0 $white_space/2;	
+		border-left: $white_space #FFF solid;			
+		border-right: $white_space #FFF solid;			
+	}
+}
+
 .product {
 	
 	border: $bigger_border;
 
-	width: 233px;
+	width: 300px;
 	height: auto;
 	
 	margin: 1%;
 
 	margin-bottom: 20px; // Нижний отступ между рядами
 
-	// %BAD
-	.img-wrapper {
-		// Выравниваем изображения, и заставляем их хвсе занимать одинаковое количество места
-		display: flex;
-		min-height: 170px;
-		min-width: 170px;
-	
-		img {
-			margin: auto;	
-		}
+	display: flex;
+	flex-flow: column wrap;
+
+	// Базовая величина вертикального отступа между блоками
+	$base_vertical_margin: 30px;
+	// Базовый отступ от стенок контейнера
+	$base_container_margin: 20px; 
+
+	&__img {
+		min-height: 200px;
+		//width: 150px;
 	}
 
 	// %BAD
 	header {
-		font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+		margin: 0 $base_container_margin;
+		margin-bottom: $base_vertical_margin/6;
+
 		font-weight: bold;
-		font-size: $increased_font_size;
+		font-size: $increased_font_size*1.1;
 	}
 
-	header, div.description, div.numbers, div.links {
-		width: 100%;
-		box-sizing: border-box;
-		padding: 8px 20px;
-	}
+	.description {
+		margin: 0 $base_container_margin;
+		margin-bottom: $base_vertical_margin;
 
-	div.description {
 		max-height:  100px;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		// ellipsis - Не работает, на многострочных текстах, что поделаешь :) 
-	
-		&:hover {
-			// Полная информация - по наведелию мышки
-			max-height: none;
-		}
 	}
 
 	table {
-
-		width: 100%;
-
-		th, td {
-			padding: 3px;
-		}
+		margin: auto;
+		margin-bottom: $base_vertical_margin;
 	
+		@include simple-table;
+	}
+
+
+	.delimiter {
+		margin: auto;
+		margin-bottom: $base_vertical_margin/2;
+
+		width: 33%;
+		
+		border: 1px LightGrey solid;
 	}
 
 	/* Форматирование ссылок на категорию и торговую марку. 
-		   Такие ссылки должны больнее менее на табличку похоже. */
+	   Такие ссылки должны больнее менее на табличку похоже. */
 		   
-	div.links {
-		display: table;
+	.links {
+		width: 60%;
+		margin: auto;
+		margin-bottom: $base_vertical_margin;
+
 		
-		span {
-			display: table-cell;	
+		// Пытаемся как-то красиво отцентрировать ссылки
+		display: flex;
+		justify-content: space-between;
+		//margin: 0 $base_container_margin*2;
+
+		a {
+			text-align: center;
+			font-size: $increased_font_size;
+		}
+
+		a:visited {
+			// Отключаем фиолетовый цвет - зачем он навигационным ссылкам?
+			color: blue;
 		}
 	}
 
@@ -152,15 +187,29 @@
 	// TODO: BEM
 
 	width: 100%;
+	
 	border: none;
-	border-radius: 0;
-
 	border-bottom: $border;
 	
 	margin: 0; // Обнуляем разрыв со следующим блоком
-	padding-bottom: 20px;
 	
-	div.numbers, div.links {
+	.numbers, .links, .delimiter {
 		display: none;
+	}
+}
+
+.product:hover {
+	// Полная информация - по наведелию мышки
+	.description {
+		max-height: none;
+	}
+}
+
+// Выравниваем изображения
+.centered-image {
+	display: flex;
+	
+	img {
+		margin: auto;
 	}
 }

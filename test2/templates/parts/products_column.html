@@ -23,7 +23,7 @@
 	{% for product in products %}
 
 		<article class="products-box__product product">
-			<div class="img-wrapper">
+			<div class="product__img centered-image">
 				<img src="/media/{{product.image}}" alt="{{product.name}}">
 			</div>
 			<header>
@@ -33,7 +33,7 @@
 			<div class="description">
 				{{product.description}}
 			</div>
-
+		
 			<div class = "numbers">
 				<table>
 			    	<thead>
@@ -52,9 +52,13 @@
 					</tbody>
 				</table>
 			</div>
+			
+			<hr class="delimiter"/>
+
+
 			<div class = "links">
-				<span><a href = "{%url 'products_by_category' product.category.slug%}">{{product.category.name}}</a></span>
-				<span><a href = "{%url 'trademark' product.trademark.slug%}">{{product.trademark.name}}</a></span>
+				<a href = "{%url 'products_by_category' product.category.slug%}">{{product.category.name}}</a>
+				<a href = "{%url 'trademark' product.trademark.slug%}">{{product.trademark.name}}</a>
 			</div>
 
 		</article>
