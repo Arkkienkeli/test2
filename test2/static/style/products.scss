@@ -19,8 +19,6 @@
 		display:flex;
 		justify-content: space-between;
 		
-
-		//height: 100%;
 		width: 195px;
 		
 		box-sizing: border-box;
@@ -63,32 +61,32 @@
 	/* Список товаров, как в интернет магазине. */
 
 	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-around;
+	flex-flow: row wrap;
+	justify-content: space-between;
 	align-items: flex-start;
 
-	padding: 0;
+	padding: 0 30px;
 }
 
 
 .products-box__list {
 	@include product-list;
-		
 }
 
 // Дизайн отдельного продукта
 
 .product {
-	border: $border;
 	
 	border: $bigger_border;
 
-	width: 25% ;
+	width: 233px;
 	height: auto;
+	
+	margin: 1%;
 
-	margin-bottom: 20px; // Отступ между рядами
+	margin-bottom: 20px; // Нижний отступ между рядами
 
+	// %BAD
 	.img-wrapper {
 		// Выравниваем изображения, и заставляем их хвсе занимать одинаковое количество места
 		display: flex;
@@ -100,6 +98,7 @@
 		}
 	}
 
+	// %BAD
 	header {
 		font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
 		font-weight: bold;
