@@ -32,27 +32,29 @@
 	
 	&__controls_group {
 		display: block;
+		margin: auto 5%;
 	}
 	
 	&__control {
-		box-sizing: border-box;
-		padding: 3px;
-		//padding-right: 4px; //%HACK: Слева что-то некрасивое
 
 		color: grey;
 		font-size: 25px;
 		
-		/*
-		// Invisible, что-бы сохранять верстку
-		border: $border;
-		border-color: transparent;
-		border-width: 4px;
-		border-radius: 5px;
-		*/
+		// %NOTE: Лучше-бы, конечно, автоматически расстояния считать
+		padding: 0 2px
 	}
 
 	&__control.checked {
-		border-color: grey;
+		color: black;
+	}
+
+	&.view_as_row {
+
+		.products-box__list {			
+			// %HACK: Не уверен, что это хорошая идея, но flex-box вынуждает
+			// %TODO: Создать &__product, и убрать хак
+			padding: 0;
+		}
 	}
 }
 
@@ -146,7 +148,7 @@
 
 }
 
-.view_as_row {
+.product.view_as_row {
 	// TODO: BEM
 
 	width: 100%;
