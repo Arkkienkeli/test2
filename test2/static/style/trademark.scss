@@ -1,0 +1,21 @@
+// Торговая марка
+
+div.trademark {
+
+	@include box;
+
+	div.things {
+		padding: 20px;
+
+		img {
+			floating: left;
+			border-radius: 5px;
+		}
+	}
+
+	.contacts {
+			
+		tr:nth-child(2){
+		}
+	}
+}

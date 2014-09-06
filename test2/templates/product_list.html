@@ -9,18 +9,20 @@
 		<title>Тестовый сайт - Продукты</title>
 	</head>
 	<body>
-		<header>Заголовок, наполненный смыслом</header>
-		<div id="main">
-			
-			<div id="left_column">
-				{% include "parts/sidebar.html" %}
+		<div class="main">
+			<header>Заголовок, наполненный смыслом</header>
+			<div class="main__columns">
+				
+				<div class="main__left_column column">
+					{% include "parts/sidebar.html" %}
+				</div>
+		
+				<div class="main__right_column column">
+					{% include "parts/products_column.html" %}
+				</div> 
 			</div>
-	
-			<div id="right_column">
-				{% include "parts/products_column.html" %}
-			</div> 
-		</div>	
-		<footer></footer>
+			<footer></footer>
+		</div>
 
 		<script src="/static/js/live.js"></script>
 		<script src="/static/js/script.js"></script>

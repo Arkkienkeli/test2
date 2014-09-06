@@ -1,31 +1,27 @@
-<div id="sidebar">
-
-	<nav class="menu">
-		<header>
-			Категории товаров
-		</header>	
-		
-		{% for category in categories %}
-		<a href="{% url 'products_by_category' category.slug %}">{{category.name}}</a>
-		{% endfor %}
-	</nav>
-
-	<nav class="menu">
-		<header>
-			Требования ТЗ
-		</header>
-		
-		<a href="/products/test_case/">Тестовый случай</a>
-	</nav>
+<nav class="menu-box column__box">
+	<header class="menu-box__title">
+		Категории товаров
+	</header>	
 	
-	<nav class="menu">
-		<header>
-			Производители
-		</header>
-		
-		{% for trademark in trademarks %}
-		<a href="{% url 'trademark' trademark.slug %}">{{trademark.name}}</a>
-		{% endfor %}
-	</nav>
+	{% for category in categories %}
+	<a href="{% url 'products_by_category' category.slug %}">{{category.name}}</a>
+	{% endfor %}
+</nav>
 
-</div>
+<nav class="menu-box column__box">
+	<header class="menu-box__title">
+		Требования ТЗ
+	</header>
+	
+	<a href="/products/test_case/">Тестовый случай</a>
+</nav>
+
+<nav class="menu-box column__box">
+	<header class="menu-box__title">
+		Производители
+	</header>
+	
+	{% for trademark in trademarks %}
+	<a href="{% url 'trademark' trademark.slug %}">{{trademark.name}}</a>
+	{% endfor %}
+</nav>

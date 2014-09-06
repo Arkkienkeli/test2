@@ -1,0 +1,165 @@
+
+// Колонка товаров
+
+.products-box {
+	@include box;
+	
+	>header {
+		margin-bottom: 50px;
+	
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__title {
+		border-bottom: none;
+	}
+	
+	&__product_controls {
+		display:flex;
+		justify-content: space-between;
+		
+
+		//height: 100%;
+		width: 195px;
+		
+		box-sizing: border-box;
+		padding: 8px 5px;
+				
+		border-left: $border;
+		
+		display: flex;
+		justify-content: space-between;
+	}
+	
+	&__controls_group {
+		display: block;
+	}
+	
+	&__control {
+		box-sizing: border-box;
+		padding: 3px;
+		//padding-right: 4px; //%HACK: Слева что-то некрасивое
+
+		color: grey;
+		font-size: 25px;
+		
+		/*
+		// Invisible, что-бы сохранять верстку
+		border: $border;
+		border-color: transparent;
+		border-width: 4px;
+		border-radius: 5px;
+		*/
+	}
+
+	&__control.checked {
+		border-color: grey;
+	}
+}
+
+
+@mixin product-list {
+	/* Список товаров, как в интернет магазине. */
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: flex-start;
+
+	padding: 0;
+}
+
+
+.products-box__list {
+	@include product-list;
+		
+}
+
+// Дизайн отдельного продукта
+
+.product {
+	border: $border;
+	
+	border: $bigger_border;
+
+	width: 25% ;
+	height: auto;
+
+	margin-bottom: 20px; // Отступ между рядами
+
+	.img-wrapper {
+		// Выравниваем изображения, и заставляем их хвсе занимать одинаковое количество места
+		display: flex;
+		min-height: 170px;
+		min-width: 170px;
+	
+		img {
+			margin: auto;	
+		}
+	}
+
+	header {
+		font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+		font-weight: bold;
+		font-size: $increased_font_size;
+	}
+
+	header, div.description, div.numbers, div.links {
+		width: 100%;
+		box-sizing: border-box;
+		padding: 8px 20px;
+	}
+
+	div.description {
+		max-height:  100px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		// ellipsis - Не работает, на многострочных текстах, что поделаешь :) 
+	
+		&:hover {
+			// Полная информация - по наведелию мышки
+			max-height: none;
+		}
+	}
+
+	table {
+
+		width: 100%;
+
+		th, td {
+			padding: 3px;
+		}
+	
+	}
+
+	/* Форматирование ссылок на категорию и торговую марку. 
+		   Такие ссылки должны больнее менее на табличку похоже. */
+		   
+	div.links {
+		display: table;
+		
+		span {
+			display: table-cell;	
+		}
+	}
+
+}
+
+.view_as_row {
+	// TODO: BEM
+
+	width: 100%;
+	border: none;
+	border-radius: 0;
+
+	border-bottom: $border;
+	
+	margin: 0; // Обнуляем разрыв со следующим блоком
+	padding-bottom: 20px;
+	
+	div.numbers, div.links {
+		display: none;
+	}
+}

@@ -1,0 +1,55 @@
+// Раскладка крупных блоков: хедера, футера и колонок 
+
+.main {
+	>header, >footer {
+		border: $border;
+
+		width: 100%;
+		height: 72px;
+	}
+
+	.main__columns {
+		display: flex;
+		justify-content: space-between; 
+
+		min-width: 960px;
+		width: 80%;
+		min-height: 80%;
+		
+		margin: 60px auto;
+	}
+
+	.main__left_column {
+		order: 1;
+		flex-basis: 30%;
+	}
+
+	.main__right_column {
+		order: 2;
+		flex-basis: 65%;
+	}
+}
+
+// Раскладка боксов внутри колонок
+
+.column {
+	.column__box {
+		// Для всех элементов кроме первого
+		&:nth-child(1n+2) {
+			// Отступы между меню
+			margin-top: 30px;
+		}
+	}
+}
+
+// Раскладка боксов внутри колонок
+
+.column {
+	.column__box {
+		// Для всех элементов кроме первого
+		&:nth-child(1n+2) {
+			// Отступы между меню
+			margin-top: 30px;
+		}
+	}
+}
