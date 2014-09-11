@@ -5,11 +5,11 @@ div.trademark {
 	@include box;
 
 	div.things {
-		padding: 20px;
+		padding: 1rem;
 
 		img {
 			floating: left;
-			border-radius: 5px;
+			border-radius: 0.4rem;
 		}
 	}
 

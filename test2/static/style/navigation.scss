@@ -1,0 +1,54 @@
+// Навигационные меню
+
+@mixin box {
+	border: $border;
+	
+    width: 100%;
+
+	>header {
+		// Внешний вид + бордюр снизу заголовка
+		
+		color: #565d64;
+		font-size: $title_font_size;
+		
+		border-bottom: $border;
+
+		box-sizing: border-box;	
+	}
+
+	&__title {
+		/* %HACK: Довольно странное решение, связанно с тем, что иногда
+		   нужно применять padding ко всему хедеру, а иногда только к тексту. */
+		padding: 0.6rem 1rem;
+	}
+}
+
+.menu-box {
+	@include box;	
+
+	a {
+		display: block;
+    	box-sizing: border-box;
+		width: 100%;
+		
+		padding: 0.7rem;
+
+    	text-decoration: none;
+		color: #777;
+		font-size: $increased_font_size;	
+	}
+
+	a:hover, a:focus {
+	    background: #eee;
+	}
+
+	@media #{$medium_device} {
+		flex-direction: row;
+		
+		&.technical-guide-box {
+			display: none;
+		}
+
+	}
+	
+}

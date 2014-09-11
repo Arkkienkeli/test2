@@ -1,7 +1,6 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="/static/style/style.css">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -10,22 +9,18 @@
 	</head>
 	<body>
 		<div class="main">
-			<header class="site_header">Заголовок, наполненный смыслом</header>
+			<header>Заголовок, наполненный смыслом</header>
 			<div class="main__columns">
 				
 				<div class="main__left_column column">
-					{% include "parts/sidebar.html" %}
+					{% include "parts/navigation.html" %}
 				</div>
 		
 				<div class="main__right_column column">
-					{% include "parts/products_column.html" %}
+					{% include "parts/products-box.html" %}
 				</div> 
 			</div>
-			<footer class="site_footer">
-				<div class="copyright">
-				© Гриша Герасев и Никита Мошков 
-				</div>
-			</footer>
+			<footer></footer>
 		</div>
 
 		<script src="/static/js/live.js"></script>

@@ -1,11 +1,23 @@
 @import "normalize";
 @import "font-awesome";
- 
+
+// Адаптивная верстка: медиа запросы
+
+$small_device: "max-width: 599px";
+$medium_device: "(min-width: 600px) and (max-width: 960px)";
+$normal_device: "min-width: 940px";
+
 // Типография
 
-$default_font_size: 16px;
-$increased_font_size: 18px;
-$title_font_size: 29.9px;
+$default_font_size: 0.9rem;
+$increased_font_size: 1rem;
+$small_header_font_size: $default_font_size*1.5;
+$title_font_size: $increased_font_size*1.5;
+
+// Цвета
+
+$base_color: lightgrey;
+$additional_color: darkgrey; 
 
 /* Стандартный бордюр */
 
@@ -14,32 +26,20 @@ $bigger_border: 4px darkgrey solid;
 
 /* Раскладка крупных блоков: хедера, футера и колонок 
    А так-же хедеров внутри колонок. */
+   
 @import "layout";
 
-// Навигационные меню
+// Сайдбар
+
 @import "navigation";
 
 // Все связанное с отображением продуктов
-@import "products.scss";
+
+@import "products";
 
 // Торговая марка
+
 @import "trademark";
-
-/* Стили хедера и футера */
-
-.site_header {
-	height: 100px !important;
-}
-
-.site_footer {
-	display: flex;
-
-	.copyright {
-		margin: auto;
-		font-size: $increased_font_size;
-		//margin-right: 100px;
-	}
-}
 
 // Стилизация иконок
 
