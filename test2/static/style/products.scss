@@ -38,7 +38,7 @@
 	&__control {
 
 		color: grey;
-		font-size: 25px;
+		font-size: 80%;
 		
 		// %NOTE: Лучше-бы, конечно, автоматически расстояния считать
 		padding: 0 2px
@@ -56,6 +56,10 @@
 			padding: 0;
 		}
 	}
+
+	&__product {
+		margin-bottom: 40px; // Нижний отступ между рядами		
+	} 
 }
 
 
@@ -64,10 +68,8 @@
 
 	display: flex;
 	flex-flow: row wrap;
-	justify-content: space-between;
-	align-items: flex-start;
-
-	padding: 0 30px;
+	justify-content: space-around;
+	align-items: stretch;
 }
 
 
@@ -90,9 +92,14 @@
 
 		// %HACK: Эффект пустого пространства между колонками 
 		$white_space: 15px;
-		padding: 0 $white_space/2;	
-		border-left: $white_space #FFF solid;			
-		border-right: $white_space #FFF solid;			
+		padding: 0 $white_space/3;	
+		border-left: $white_space white solid;			
+		border-right: $white_space white solid;			
+		
+		font-size: $default_font_size;
+		
+		text-align: cente
+
 	}
 }
 
@@ -103,9 +110,7 @@
 	width: 300px;
 	height: auto;
 	
-	margin: 1%;
-
-	margin-bottom: 20px; // Нижний отступ между рядами
+	//margin: 1%;
 
 	display: flex;
 	flex-flow: column wrap;
@@ -137,6 +142,8 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
 		// ellipsis - Не работает, на многострочных текстах, что поделаешь :) 
+	
+		font-size: $default_font_size;
 	}
 
 	table {
@@ -151,9 +158,11 @@
 		margin: auto;
 		margin-bottom: $base_vertical_margin/2;
 
-		width: 33%;
+		width: 20%;
+		height: 0;
 		
-		border: 1px LightGrey solid;
+		border: none;
+		border-top: $border;
 	}
 
 	/* Форматирование ссылок на категорию и торговую марку. 

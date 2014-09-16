@@ -2,51 +2,98 @@
 
 .main {
 	box-sizing: border-box;
-	width: 100%;
+	width: 100vw;
 
 	>header, >footer {
 		border: $border;
-		height: 3rem;
+		height: 10vh;
 	}
 
-	.main__columns {
+	&__columns {
 		display: flex;
 		justify-content: space-between; 
 
-		width: 80vw;
 		min-height: 80%;
 		
-		margin: 3rem auto;
-	}
+		box-sizing: border-box;
 
-	.main__left_column {
-		order: 1;
-		flex: 1;
-		//min-width: 15rem;
-	}
+		@include device($large) {
+			margin: 3vw auto;
+			width: 90vw;
+			min-width: $width_breakpoint_ml;
+		}
 
-	.main__right_column {
-		order: 2;
-		flex: 3;
-		margin-left: 2rem;
-	}
-
-	@media #{$medium_device} {
-		.main_columns {
+		@include device($not_large) {
 			flex-direction: column;
 			width: 100vw;
 		}
+
+		@include device($medium) {
+			padding: 0 5px; //%NOTE: Небольшой отступ, что-бы было видно боковые рамки 
+			//%BUG: Пиздец, у __right_column почему-то справа отступ меньше
+		}
+
+	}
+
+	&__left_column {
+		order: 1;
+		flex: 1;
+		
+		display: flex;
+
+		@include device($medium){
+			margin-top: 2vh;
+			flex-direction: row !important;
+		}
+	}
+
+	&__right_column {
+		order: 2;
+		flex: 3;
+	
+		@include device($large){
+			margin-left: 3vw;
+		}
+
+		@include device($not_large){
+			margin-top: 2vh;
+		}
+	}
+}
+
+// Изменение раскладки на небольших устройствах
+// На планшетах меню перемещается в шапку, а блоки распологаются горизонтально 
+
+.main__left_column {
+	@include device($not_large) {
+		flex-direction: row !important;
 	}
 }
 
 // Раскладка боксов внутри колонок
 
 .column {
-	.column__box {
-		// Для всех элементов кроме первого
-		&:nth-child(1n+2) {
-			// Отступы между меню
-			margin-top: 1.5em;
+	display: flex;
+	flex-direction: column;
+	
+	&__box {
+
+		@include device($large) {
+			// Для всех элементов кроме первого
+			&:nth-child(1n+2) {
+				// Отступы между меню
+				margin-top: 1.5em;
+			}
 		}
+
+		@include device($medium) {
+			// Для всех элементов кроме первого
+			&:nth-child(1n+2) {
+				// Отступы между меню
+				margin-left: 1vw;
+			}
+			
+		}
+
 	}
 }

@@ -1,0 +1,27 @@
+@mixin icon {
+	@extend .fa;
+}
+
+i.sort_by_name {
+	@include icon;
+	@extend .fa-sort-amount-asc;
+}
+
+i.sort_by_name_reversed {
+	@include icon;
+	@extend .fa-sort-amount-desc;
+}
+
+i.view_products_as_tiles {
+	@include icon;
+	@extend .fa-th;
+	
+	padding-bottom: 1px !important;
+}
+
+i.view_products_as_rows {
+	@include icon;
+	@extend .fa-align-justify;
+
+	padding-bottom: 1px !important;
+}

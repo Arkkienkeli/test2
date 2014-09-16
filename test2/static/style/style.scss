@@ -3,26 +3,42 @@
 
 // Адаптивная верстка: медиа запросы
 
-$small_device: "max-width: 599px";
-$medium_device: "(min-width: 600px) and (max-width: 960px)";
-$normal_device: "min-width: 940px";
+$width_breakpoint_ml: 960px;
+
+$small: "max-width: 599px";
+$medium: "(min-width: 600px) and (max-width: 960px)";
+$large: "(min-width: 960px)";
+$not_large: "(max-width: 960px)";
+
+@mixin device($device) {
+	@media #{$device} {
+		@content
+	}
+}
+
+
+/* Константы дизайна */
 
 // Типография
 
-$default_font_size: 0.9rem;
-$increased_font_size: 1rem;
+$default_font_size: 1vw;
+$increased_font_size: $default_font_size*1.1;
 $small_header_font_size: $default_font_size*1.5;
-$title_font_size: $increased_font_size*1.5;
+$title_font_size: $default_font_size*2.0;
 
 // Цвета
 
 $base_color: lightgrey;
-$additional_color: darkgrey; 
+$additional_color: darkgrey;
 
-/* Стандартный бордюр */
+$title_color: #565d64; 
+$menu_item_color: #777;
+$menu_item_hover_color: #eee;
 
-$border: 1px lightgrey solid;
-$bigger_border: 4px darkgrey solid;
+// Бордюры
+
+$border: 1px $base_color solid;
+$bigger_border: 3px $additional_color solid;
 
 /* Раскладка крупных блоков: хедера, футера и колонок 
    А так-же хедеров внутри колонок. */
@@ -43,30 +59,4 @@ $bigger_border: 4px darkgrey solid;
 
 // Стилизация иконок
 
-@mixin icon {
-	@extend .fa;
-}
-
-i.sort_by_name {
-	@include icon;
-	@extend .fa-sort-amount-asc;
-}
-
-i.sort_by_name_reversed {
-	@include icon;
-	@extend .fa-sort-amount-desc;
-}
-
-i.view_products_as_tiles {
-	@include icon;
-	@extend .fa-th;
-	
-	padding-bottom: 1px !important;
-}
-
-i.view_products_as_rows {
-	@include icon;
-	@extend .fa-align-justify;
-
-	padding-bottom: 1px !important;
-}
+@import "icons";

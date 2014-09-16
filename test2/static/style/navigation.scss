@@ -8,7 +8,7 @@
 	>header {
 		// Внешний вид + бордюр снизу заголовка
 		
-		color: #565d64;
+		color: $title_color;
 		font-size: $title_font_size;
 		
 		border-bottom: $border;
@@ -34,16 +34,17 @@
 		padding: 0.7rem;
 
     	text-decoration: none;
-		color: #777;
+		color: $menu_item_color;
 		font-size: $increased_font_size;	
 	}
 
 	a:hover, a:focus {
-	    background: #eee;
+	    background: $menu_item_hover_color;
 	}
 
-	@media #{$medium_device} {
-		flex-direction: row;
+	
+	@media #{$not_large} {
+		//???flex-direction: row;
 		
 		&.technical-guide-box {
 			display: none;
